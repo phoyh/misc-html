@@ -1,0 +1,194 @@
+<HTML>
+<head>
+<title>
+SVG Overview by Phoyh (1999)
+</title>
+</head>
+<body>
+<h1 align=center><b>SVG <i>(<u>S</u>calable <u>V</u>ector <u>G</u>raphics)</i></b></h1>
+<h4 align=left>Auf dieser Seite sind die wichtigsten Informationen
+zu SVG zusammengetragen. Weiterfuehrende Informationen sind im WWW
+vorhanden (siehe <a href="#links">Links</a>). Nach dem Lesen dieser
+Seite sollte man in der Lage sein, eine eigene einfache SVG erstellen
+zu koennen.</h4><hr>
+<ol><li><a href="#rumen">
+Einfuehrung</a></li>
+<li><a href="#struct">
+Strukturtags</a></li>
+<li><a href="#graph">
+Graphikelemente</a></li>
+<li><a href="#darst">
+Darstellung der SVG</a></li>
+<li><a href="#liru">
+Beispiel</a></li>
+<li><a href="#links">
+Links</a></li>
+</ol>
+<hr>
+<a name="rumen"><h3 align=center><u>Einfuehrung</u></h3></a><p>
+SVG wurde und wird von der W3C durch die SVG Working Group
+entworfen. Es befindet sich noch in der Anfangsphase. Die bisherigen
+Festlegungen koennen noch wegen Implementierungsfragen geaendert
+werden. Daher wird an dieser Stelle nur auf die wichtigsten
+Aspekte von SVG eingegangen, da diese wohl schon jetzt
+feststehen.</p>
+<p>Bisher wurden zwei Entwuerfe am 11.2.99 und 12.4.99
+veroeffentlicht. Die MIME-Type wurde auf image/svg festgelegt. 
+Eine SVG wird in XML eingebunden und ist eine fast beliebige
+Kombination von 2D-Vektorgraphik, Images und Text. Events und Links
+koennen mit Teilen der Graphik verbunden werden. Verschiedene
+Anwendungen von SVGs im Zusammenhang mit Animationen ist denkbar.
+</p>
+
+<hr height=3>
+<a name="struct"><h3 align=center><u>Strukturtags</u></h3></a><p>
+Die SVG ist in das XML-Dokument eingebettet. Nach dem Tag fuer
+den Beginn &lt;svg> koennen zunaechst Graphikelemente innerhalb
+vom &lt;defs> Tag definiert werden. Dies ist dann noetig,
+wenn auf diese Elemente innerhalb der SVG zugegriffen wird.
+Daher sind auch id-Kennummern vonnoeten. Ausserdem koennen hier
+auch globale Einstellungen an der SVG vorgenommen werden (mit
+&lt;style> und &lt;script>). Das &lt;desc> Tag folgt optional
+nach dem &lt;/defs>. Zum Schluss kommen noch die eigentlichen
+Graphikdaten. Graphikelemente koennen mit dem &lt;g> Tag gebuendelt
+werden, wenn sie Gemeinsamkeiten haben.</p>
+<table width="100%" border=2><tr><th>
+Strukturtags innerhalb der SVG
+</th><th>
+Beispiel oder Erlaeuterung
+</th></tr><tr><td>
+ svg
+</td><td>
+ &lt;svg width="2in" height="4in"><br>
+ &lt!-- eigentliche SVG-Daten --><br>
+ &lt;/svg>
+</td></tr><tr><td>
+ desc
+</td><td>
+ &lt;desc><br>
+ &lt!-- Hier steht die Beschreibung --><br>
+ &lt;/desc>
+</td></tr><tr><td>
+ g
+</td><td>
+ &lt;g style="fillcolor:green" id="Gruppierung 1">
+ <br>&lt;!-- Elemente der Gruppierung -->
+ <br>&lt;/g>
+</td></tr><tr><td>
+ defs
+</td><td>
+ &lt;defs><br>
+ &lt;-- Elemente mit id --><br>
+ &lt;/defs>
+</td></tr><tr><td>
+ style
+</td><td>
+ Muss innerhalb des defs-Tags stehen, gilt global fuer die SVG,
+ sonst wie bei HTML
+</td></tr><tr><td>
+ script
+</td><td>
+ Muss innerhalb des defs-Tags stehen, gilt global fuer die SVG,
+ sonst wie bei HTML
+</td></tr></table>
+
+<br><hr height=3><br>
+<a name="graph"><h3 align=center><u>Graphikelemente</u></h3></a>
+<p>Die eigentlichen Graphikelemente koennen beliebig innerhalb
+des Koordinatensystems angeordnet werden. Das Fuellen von Flaechen
+kann mit Mustern oder Gradienten erfolgen.</p>
+<p>Mit dem &lt;path> Tag koennen alle anderen 2D-Graphikelemente
+gezeichnet werden. Ein Pfad besteht aus mehreren Eckpunkten, die
+mit Linien oder Kurven verbunden sind. Damit koennen alle denkbaren
+2D-Graphikobjekte geschaffen werden. Ausserdem kann ein Pfad auch
+die Form eines Textzuges bestimmen.</p>
+<p>Bilder werden aehnlich wie bei HTML mit image (bei HTML: img)
+eingebunden. Zusatzattribute sind x und y. Ausserdem muss die
+source mit href (da als XLink) angegeben werden.
+</p>
+<table width="100%" border=2><tr><th>
+Graphiktags innerhalb des SVG-Dokumentes
+</th><th>
+Beispiel oder Erlaeuterung
+</th></tr><tr><td>
+ text
+</td><td>
+ &lt;text style="font-size: 12"> Schreibt mit 12px-Font &lt;/text>
+</td></tr><tr><td>
+ rect
+</td><td>
+ &lt;rect x="100" y="100" width="200" height="40" />
+</td></tr><tr><td>
+ circle
+</td><td>
+ &lt;circle cx="30" cy="30" r="10" onMouseOver="invokeProc()"/>
+</td></tr><tr><td>
+ path
+</td><td>
+ &lt;path d="M 30 30 L 60 30 L 45 45 z" />
+</td></tr><tr><td>
+ ellipse
+</td><td>
+ &lt;ellipse major="40" minor="20" style="fill:blue;" />
+</td></tr><tr><td>
+ polyline
+</td><td>
+ &lt;polyline verts="40,40 50,40 50,50 40,50" />
+</td></tr><tr><td>
+ polygon
+</td><td>
+</td></tr><tr><td>
+ image
+</td><td>
+ &lt;image x="100" y="100" style="width: 100px; height: 100px" href="Bild.png">
+</td></tr></table>
+
+<br><hr height=3><br>
+<a name="darst"><h3 align=center><u>Darstellung der SVG</u></h3></a>
+<p>Die SVG wird innerhalb eines gewissen rechteckigen Bereichs (sog.
+<b>Viewport</b>) dargestellt. Dieser Viewport kann die Graphik
+in verschiedenen Koordinatensystemen darstellen. D.h., es kann z.B.
+gezoomt und rotiert werden. Weiterhin koennen Masks definiert werden
+(z.B. als PNG), um zu definieren, welche Bereiche einer Gruppierung
+angezeigt werden sollen. Blending-Techniken und Optionen fuer das
+Clipping von Teilen der Graphiken werden auch unterstuetzt.</p>
+
+<hr height=3><br>
+<a name="liru"><h3 align=center><u>Beispiel</u></h3></a><p>
+Da die momentanen Browser noch nicht fuer XML, geschweige denn
+fuer das noch experimentelle SVG ausgestattet sind, muss an
+dieser Stelle die Darstellung von Code reichen.<br>
+Es handelt sich hierbei um ein Kreissegment, auf dessen Rand
+ein Textzug geschrieben ist, und in dessen Inneren ein Logo ist.</p>
+<p><code><pre>
+&lt;?xml version="1.0" standalone="yes"?>
+&lt;svg width="4in" height="3in" xmlns='http://www.w3.org/Graphics/SVG/svg-19990412.dtd'>
+ &lt;desc>
+  Dies ist ein Beispiel
+ &lt;/desc>
+ &lt;g>
+  &lt;path id="Kreis" style="visibility: hidden" d="D 100 100 0 0 80 80 0" />
+  &lt;text>&lt;textpath href="#Kreis"/>
+   Dies ist der Text auf dem Kreis
+  &lt;/text>
+  &lt;circle cx="100" cy="100" r="90">
+  &lt;circle cx="100" cy="100" r="70">
+ &lt;/g>
+ &lt;image x="60" y="60" style="width: 80; height: 80" href="Logo.png">
+&lt;/svg>
+</pre></code></p>
+
+<hr height=3><br>
+<a name="links"><h3 align=center><u>Links</u></h3></a>
+<ul><li><a href="http://www.w3.org/Graphics/SVG/">
+W3C</a></li>
+<li><a href="http://sh.w3.mag.keio.ac.jp/Press/1999/SVG-WD.html">
+Japanische Press-Release</a></li>
+<li><a href="http://xml.com/xml/pub/r/Scalable_Vector_Graphics_(SVG)_Requirements">
+xml.com</a></li>
+</ul>
+
+<hr height=3><br>
+<h5 align=right>by <a href="https://github.com/phoyh">
+Phoyh</a></h5>
+</body></HTML>
